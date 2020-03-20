@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from "@angular/material";
 import { metaReducers, reducers } from "./reducers";
 import { AuthGuard } from "./auth/auth.guard";
 import { TestComponentComponent } from "./app/test-component/test-component.component";
+import { SinglePageScrollComponent } from './single-page-scroll/single-page-scroll.component';
 
 const routes: Routes = [
   {
@@ -42,7 +43,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, TestComponentComponent],
+  declarations: [AppComponent, TestComponentComponent, SinglePageScrollComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
