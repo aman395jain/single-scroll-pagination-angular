@@ -37,6 +37,10 @@ const routes: Routes = [
     component: TestComponentComponent
   },
   {
+    path: "singleScroll",
+    component: SinglePageScrollComponent
+  },
+  {
     path: "**",
     redirectTo: "/"
   }
