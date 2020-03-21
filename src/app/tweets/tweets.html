@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-paginator
+    [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+  >
+  </mat-paginator>
+  <infinite-scroll
+    (scrolled)="onScroll()"
+    style="height: 400px; overflow-y: auto"
+  >
+    <app-tweet
+      *ngFor="let tweet of tweets$ | async"
+      [tweet]="tweet"
+    ></app-tweet>
+
+    <div class="alert alert-dark" *ngIf="isLoading$ | async">
+      Fetching tweets...
+    </div>
+  </infinite-scroll>
+</div>

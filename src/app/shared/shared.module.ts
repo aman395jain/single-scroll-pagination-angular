@@ -1,12 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { InfiniteScrollComponent } from '../infinite-scroll/infinite-scroll.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { InfiniteScrollComponent } from "../infinite-scroll/infinite-scroll.component";
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [InfiniteScrollComponent],
   exports: [InfiniteScrollComponent]
 })
-export class SharedModule { }
+export class SharedModule {}

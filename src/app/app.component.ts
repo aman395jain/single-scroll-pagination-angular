@@ -1,12 +1,9 @@
-import { Component, NgZone } from '@angular/core';
-import { akitaDevtools } from '@datorama/akita';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html'
+  selector: "my-app",
+  templateUrl: "./app.component.html"
 })
 export class AppComponent {
-  constructor(private ngZone: NgZone) {
-    akitaDevtools(ngZone);
-  }
+  constructor() {}
 }
