@@ -11,7 +11,7 @@ export interface tweetState {
   data: any;
 }
 
-export const initialState: any = {
+export const initialState: tweetState = {
   currentPage: 1,
   hasMore: true,
   perPage: 10,

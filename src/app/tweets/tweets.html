@@ -13,7 +13,6 @@
       *ngFor="let tweet of tweetData$ | async"
       [tweet]="tweet"
     ></app-tweet>
-
     <div class="alert alert-dark" *ngIf="isLoading$ | async">
       Fetching tweets...
     </div>
