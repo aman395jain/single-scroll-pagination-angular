@@ -1,8 +1,9 @@
 <div class="container">
   <mat-paginator
-    [length]="100"
+    [length]="30"
     [hidePageSize]="true"
-    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageSizeOptions]="[10,20,30]"
+    (page)="testPage($event)"
   >
   </mat-paginator>
   <infinite-scroll
@@ -10,8 +11,9 @@
     style="height: 400px; overflow-y: auto"
   >
     <app-tweet
-      *ngFor="let tweet of tweetData$ | async"
+      *ngFor="let tweet of tweetData$ | async ; index as index"
       [tweet]="tweet"
+      [index]="index"
     ></app-tweet>
     <div class="alert alert-dark" *ngIf="isLoading$ | async">
       Fetching tweets...

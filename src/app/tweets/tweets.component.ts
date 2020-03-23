@@ -21,9 +21,18 @@ export class TweetsComponent implements OnInit {
   }
 
   onScroll() {
+    console.log("page number is===", this.pageNumber);
     this.store.dispatch(
       newfetchTweets.fetchTweets({ payload: { value: this.pageNumber } })
     );
     this.pageNumber = this.pageNumber + 1;
+  }
+
+  testPage(event) {
+    console.log("in the paginator---", event);
+    if (event.pageIndex > event.previousPageIndex) {
+      this.pageNumber = event.pageIndex + 1;
+      this.onScroll();
+    }
   }
 }
