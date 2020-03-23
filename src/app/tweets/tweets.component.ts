@@ -3,6 +3,10 @@ import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
 import { Tweet } from "./state/tweet.model";
 import { TweetsQuery } from "./state/tweets.query";
+import { Store, select } from "@ngrx/store";
+
+import * as newfetchTweets from "../tweets/ngrx/tweet_action";
+import { tweetsDataSelector } from "./ngrx/tweet_selector";
 
 @Component({
   selector: "app-tweets",
@@ -11,20 +15,34 @@ import { TweetsQuery } from "./state/tweets.query";
 export class TweetsComponent implements OnInit {
   tweets$: Observable<Tweet[]>;
   isLoading$: Observable<boolean>;
+  pageNumber: number = 1;
+  testTweets$: Observable<any>;
 
   constructor(
     private tweetsQuery: TweetsQuery,
-    private tweetsService: TweetsService
+    private tweetsService: TweetsService,
+    private store: Store<any>
   ) {}
 
   ngOnInit() {
     this.fetchTweets();
     this.tweets$ = this.tweetsQuery.selectAll();
+    // this.tweets$.subscribe(data => {
+    //   console.log("sxssggsg===", data);
+    // });
+    this.testTweets$ = this.store.pipe(select(tweetsDataSelector));
+    this.testTweets$.subscribe(data => {
+      console.log("jhaacsdsfgbfjkkl---", data);
+    });
     this.isLoading$ = this.tweetsQuery.selectLoading();
   }
 
   onScroll() {
     this.fetchTweets();
+    this.store.dispatch(
+      newfetchTweets.fetchTweets({ payload: { value: this.pageNumber } })
+    );
+    this.pageNumber = this.pageNumber + 1;
   }
 
   private fetchTweets() {
