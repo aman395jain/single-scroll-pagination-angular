@@ -16,7 +16,7 @@ export class TweetsComponent implements OnInit {
   tweets$: Observable<Tweet[]>;
   isLoading$: Observable<boolean>;
   pageNumber: number = 1;
-  testTweets$: Observable<any>;
+  tweetData$: Observable<any>;
 
   constructor(
     private tweetsQuery: TweetsQuery,
@@ -27,13 +27,12 @@ export class TweetsComponent implements OnInit {
   ngOnInit() {
     this.fetchTweets();
     this.tweets$ = this.tweetsQuery.selectAll();
-    // this.tweets$.subscribe(data => {
-    //   console.log("sxssggsg===", data);
+    this.tweetData$ = this.store.pipe(select(tweetsDataSelector));
+    // this.tweetData$.subscribe(data => {
+    //   if (data.length) {
+    //     this.displayData = data;
+    //   }
     // });
-    this.testTweets$ = this.store.pipe(select(tweetsDataSelector));
-    this.testTweets$.subscribe(data => {
-      console.log("jhaacsdsfgbfjkkl---", data);
-    });
     this.isLoading$ = this.tweetsQuery.selectLoading();
   }
 

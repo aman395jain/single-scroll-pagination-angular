@@ -1,9 +1,16 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
 import { tweetState } from "./store";
+import { selectAll } from "./tweet_reducer";
 
-const tweetsData = createFeatureSelector<tweetState>("tweets");
+export const tweetsData = createFeatureSelector<any>("tweets");
 
-export const tweetsDataSelector = createSelector(tweetsData, test => {
-  return test;
+export const tweetAll = createSelector(tweetsData, selectAll);
+
+export const tweetsDataSelector = createSelector(tweetAll, tweets => {
+  const dataForDisplay = [];
+  tweets.forEach(element => {
+    dataForDisplay.push(...element[0].data);
+  });
+  return dataForDisplay;
 });

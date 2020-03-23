@@ -10,7 +10,7 @@
     style="height: 400px; overflow-y: auto"
   >
     <app-tweet
-      *ngFor="let tweet of tweets$ | async"
+      *ngFor="let tweet of tweetData$ | async"
       [tweet]="tweet"
     ></app-tweet>
 
@@ -18,8 +18,4 @@
       Fetching tweets...
     </div>
   </infinite-scroll>
-
-  <!-- <div class="dvqscdbgbdc">
-    {{testTweets$|async}}
-  </div> -->
 </div>
