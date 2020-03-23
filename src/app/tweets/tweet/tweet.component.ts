@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Tweet } from '../state/tweet.model';
 
 @Component({
   selector: 'app-tweet',
@@ -15,5 +14,5 @@ import { Tweet } from '../state/tweet.model';
   styleUrls: ['./tweet.component.css']
 })
 export class TweetComponent {
-  @Input() tweet: Tweet;
+  @Input() tweet: any;
 }
