@@ -8,6 +8,7 @@ import { TweetsModule } from "./tweets/tweets.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { EffectsModule } from "@ngrx/effects";
     BrowserModule,
     AppRoutingModule,
     TweetsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([])

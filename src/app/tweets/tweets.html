@@ -1,14 +1,15 @@
 <div class="container">
   <mat-paginator
-    [length]="30"
+    [length]="50"
     [hidePageSize]="true"
-    [pageSizeOptions]="[10,20,30]"
-    (page)="testPage($event)"
+    [pageSizeOptions]="[10,20,30,40,50]"
+    (page)="pageEvents($event)"
   >
   </mat-paginator>
   <infinite-scroll
     (scrolled)="onScroll()"
     style="height: 400px; overflow-y: auto"
+    class="infinite-scroll"
   >
     <app-tweet
       *ngFor="let tweet of tweetData$ | async ; index as index"

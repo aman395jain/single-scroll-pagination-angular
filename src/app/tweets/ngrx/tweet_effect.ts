@@ -1,18 +1,19 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType, act } from "@ngrx/effects";
 import * as tweetAction from "./tweet_action";
-import { map, tap, switchMap, concatMap } from "rxjs/operators";
-import { getMockData } from "../mock.data";
+import { map, switchMap, concatMap } from "rxjs/operators";
+import { TweetService } from "src/app/shared/tweets_service";
 
 @Injectable()
 export class TweetEffect {
-  testData;
   fatchNewTweet = createEffect(() =>
     this.actions.pipe(
       ofType(tweetAction.fetchTweets),
-      concatMap(action => getMockData({ page: action.payload.value })),
+      concatMap(action => {
+        return this.tweetService.getTweets(action.payload.value);
+        // return getMockData({ page: action.payload.value }); //works
+      }),
       map((data: any) => {
-        // console.log("sgsfgsrsg", data);
         return tweetAction.addNewTweets({
           payload: { tweetData: [data] }
         });
@@ -20,5 +21,5 @@ export class TweetEffect {
     )
   );
 
-  constructor(private actions: Actions) {}
+  constructor(private actions: Actions, private tweetService: TweetService) {}
 }
