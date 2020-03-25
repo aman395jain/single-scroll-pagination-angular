@@ -5,7 +5,7 @@ import { map, delay, debounceTime } from "rxjs/operators";
 
 @Injectable()
 export class TweetService {
-  testData = {
+  tweetData = {
     data: [],
     currentPage: 0,
     hasMore: true,
@@ -20,9 +20,9 @@ export class TweetService {
       .get("http://localhost:3000/tweets?_page=" + pageNumber)
       .pipe(
         map(res => {
-          this.testData.data = JSON.parse(JSON.stringify(res));
-          this.testData.currentPage = pageNumber;
-          return this.testData;
+          this.tweetData.data = JSON.parse(JSON.stringify(res));
+          this.tweetData.currentPage = pageNumber;
+          return this.tweetData;
         })
       );
   }
