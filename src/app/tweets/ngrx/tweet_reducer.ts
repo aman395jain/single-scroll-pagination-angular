@@ -13,10 +13,7 @@ export const initialCoursesState = tweetAdapter.getInitialState({});
 export const tweetReducer = createReducer(
   initialCoursesState,
   on(tweetAction.addNewTweets, (state, action) => {
-    return tweetAdapter.addOne(action.payload.tweetData, {
-      ...state,
-      ...action.payload.tweetData
-    });
+    return tweetAdapter.addOne(action.payload.tweetData, state);
   })
 );
 

@@ -1,4 +1,10 @@
-import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  ViewChild,
+  ChangeDetectionStrategy
+} from "@angular/core";
 import { Observable } from "rxjs";
 import { Store, select } from "@ngrx/store";
 
@@ -7,7 +13,8 @@ import { tweetsDataSelector } from "./ngrx/tweet_selector";
 
 @Component({
   selector: "app-tweets",
-  templateUrl: "./tweets.html"
+  templateUrl: "./tweets.html",
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TweetsComponent implements OnInit {
   isLoading$: Observable<boolean>;
@@ -24,7 +31,7 @@ export class TweetsComponent implements OnInit {
     this.store.dispatch(
       newfetchTweets.fetchTweets({ payload: { value: this.pageNumber } })
     );
-    // this.tweetData$.subscribe(data => console.log(data));
+    // this.tweetData$.subscribe(data => console.log("data---->>>", data));
     this.pageNumber = this.pageNumber + 1;
   }
 

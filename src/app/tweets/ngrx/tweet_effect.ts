@@ -14,7 +14,6 @@ export class TweetEffect {
         // return getMockData({ page: action.payload.value }); //works
       }),
       map((data: any) => {
-        console.log("data---", data);
         return tweetAction.addNewTweets({
           payload: { tweetData: [data] }
         });
