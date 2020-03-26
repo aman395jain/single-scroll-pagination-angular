@@ -15,7 +15,7 @@ export class TweetService {
   };
   constructor(private http: HttpClient) {}
 
-  getTweets(pageNumber) {
+  getTweets(pageNumber: number) {
     return this.http
       .get("http://localhost:3000/tweets?_page=" + pageNumber)
       .pipe(
