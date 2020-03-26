@@ -10,14 +10,11 @@ export const tweetAdapter = createEntityAdapter<tweetStore.tweetState>({
   }
 });
 
-export const initialCoursesState = tweetAdapter.getInitialState();
+export const initialTweetState = tweetAdapter.getInitialState();
 
 export const tweetReducer = createReducer(
-  initialCoursesState,
+  initialTweetState,
   on(tweetAction.addNewTweets, (state, action) => {
-    console.log("in the state--->>", state);
-    console.log("in the action--->>", action.payload.tweetData);
-    console.log(tweetAdapter.addOne(action.payload.tweetData, state));
     return tweetAdapter.addOne(action.payload.tweetData, state);
   })
 );

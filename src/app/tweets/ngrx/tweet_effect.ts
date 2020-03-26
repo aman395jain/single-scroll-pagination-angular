@@ -6,7 +6,7 @@ import { TweetService } from "src/app/shared/tweets_service";
 
 @Injectable()
 export class TweetEffect {
-  getNewData(pageNumber, res) {
+  getNewTweetsData(pageNumber, res) {
     const tweetData = {
       data: res,
       currentPage: pageNumber,
@@ -23,11 +23,13 @@ export class TweetEffect {
       ofType(tweetAction.fetchTweets),
       concatMap(data =>
         this.tweetService.getTweets(data.payload.value).pipe(
-          map(res =>
-            tweetAction.addNewTweets({
-              payload: { tweetData: this.getNewData(data.payload.value, res) }
-            })
-          )
+          map(res => {
+            return tweetAction.addNewTweets({
+              payload: {
+                tweetData: this.getNewTweetsData(data.payload.value, res)
+              }
+            });
+          })
         )
       )
     )
