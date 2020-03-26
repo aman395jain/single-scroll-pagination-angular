@@ -1,6 +1,10 @@
 import { ActionReducerMap } from "@ngrx/store";
+import { routerReducer } from "@ngrx/router-store";
 
-export const reducers: ActionReducerMap<any> = {};
+export interface AppState {}
+export const reducers: ActionReducerMap<AppState> = {
+  router: routerReducer
+};
 
 export interface tweetState {
   currentPage: number;

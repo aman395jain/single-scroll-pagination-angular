@@ -8,8 +8,9 @@ export const tweetAll = createSelector(tweetsData, selectAll);
 
 export const tweetsDataSelector = createSelector(tweetAll, tweets => {
   const dataForDisplay = [];
+  // console.log("data---", tweets);
   tweets.forEach(element => {
-    dataForDisplay.push(...element[0].data);
+    dataForDisplay.push(...element.data);
   });
   return dataForDisplay;
 });
