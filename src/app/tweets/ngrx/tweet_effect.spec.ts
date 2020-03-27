@@ -10,23 +10,24 @@ import * as tweetAction from "./tweet_action";
 
 describe("BookEffects", async () => {
   let tweetEffect: TweetEffect;
-  let actions: Observable<any>;
+  let actions$: ReplaySubject<any> = new ReplaySubject(1);
   let tweetService: TweetService;
   let mockTweetService: jasmine.SpyObj<TweetService>;
 
   beforeEach(() => {
+    mockTweetService = jasmine.createSpyObj("TweetService", ["getTweets"]);
     TestBed.configureTestingModule({
       imports: [],
       providers: [
         TweetEffect,
-        provideMockActions(() => actions),
+        provideMockActions(() => actions$),
         { provide: TweetService, useValue: mockTweetService }
       ]
     });
     tweetEffect = TestBed.get(TweetEffect);
   });
 
-  fit("test", fakeAsync(() => {
+  it("should test for add tweets action dispatch", () => {
     let mockTweets = {
       currentPage: 1,
       hasMore: true,
@@ -41,14 +42,14 @@ describe("BookEffects", async () => {
         }
       ]
     };
-    // tweetServiceSpy = spyOn(tweetService, "getTweets").and.returnValue(
-    //   mockTweets
-    // );
 
-    const actions$ = new ReplaySubject(1);
+    const mockTweetServiceData = mockTweetService.getTweets.and.returnValue(
+      of(mockTweets)
+    );
+
     actions$.next(tweetAction.fetchTweets({ payload: { value: 1 } }));
-    tweetEffect.fetchNewTweets$.subscribe(result => {
-      console.log("result---", result);
+    tweetEffect.fetchNewTweets$.subscribe(tweetData => {
+      expect(tweetData.type).toEqual("[tweets] ADD tweets");
     });
-  }));
+  });
 });
