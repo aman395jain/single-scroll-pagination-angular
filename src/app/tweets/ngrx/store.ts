@@ -23,3 +23,18 @@ export const initialState: tweetState = {
   lastPage: 3,
   data: [{}]
 };
+
+export const mockTweet = {
+  currentPage: 1,
+  hasMore: true,
+  perPage: 10,
+  total: 55,
+  lastPage: 6,
+  data: [
+    {
+      id: 67671,
+      username: "Raj Sharma",
+      text: "Alias et nulla aliquam nisi officia fuga sequi."
+    }
+  ]
+};

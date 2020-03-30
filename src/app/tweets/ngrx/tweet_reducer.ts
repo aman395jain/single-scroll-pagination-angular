@@ -1,5 +1,5 @@
-import { createEntityAdapter, EntityState } from "@ngrx/entity";
-import { createReducer, on, Action } from "@ngrx/store";
+import { createEntityAdapter } from "@ngrx/entity";
+import { createReducer, on } from "@ngrx/store";
 
 import * as tweetStore from "./store";
 import * as tweetAction from "./tweet_action";

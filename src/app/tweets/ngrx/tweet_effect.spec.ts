@@ -1,10 +1,11 @@
-import { TestBed, fakeAsync, tick, async } from "@angular/core/testing";
+import { TestBed } from "@angular/core/testing";
 import { TweetEffect } from "./tweet_effect";
 import { of, ReplaySubject } from "rxjs";
 import { TweetService } from "src/app/shared/tweets_service";
 import { provideMockActions } from "@ngrx/effects/testing";
 
 import * as tweetAction from "./tweet_action";
+import { mockTweet } from "./store";
 
 describe("BookEffects", async () => {
   let tweetEffect: TweetEffect;
@@ -25,22 +26,7 @@ describe("BookEffects", async () => {
   });
 
   it("should test for add tweets action dispatch", () => {
-    let mockTweets = {
-      currentPage: 1,
-      hasMore: true,
-      perPage: 10,
-      total: 30,
-      lastPage: 3,
-      data: [
-        {
-          id: 67671,
-          username: "Raj Sharma",
-          text: "Alias et nulla aliquam nisi officia fuga sequi."
-        }
-      ]
-    };
-
-    mockTweetService.getTweets.and.returnValue(of(mockTweets));
+    mockTweetService.getTweets.and.returnValue(of(mockTweet));
 
     actions$.next(tweetAction.fetchTweets({ payload: { value: 1 } }));
     tweetEffect.fetchNewTweets$.subscribe(tweetData => {
