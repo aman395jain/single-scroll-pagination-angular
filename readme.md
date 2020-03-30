@@ -7,3 +7,7 @@ The application is visible at port 4200: [http://localhost:4200](http://localhos
 To run the mock API
 
     json-server --watch db.json
+
+To run the spec
+
+    npm test
